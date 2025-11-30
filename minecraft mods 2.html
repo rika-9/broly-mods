@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BROLY MODS</title>
+    
+    
+    <link rel="icon" href="broly anime.png"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=VT323&display=swap" rel="stylesheet"> 
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --mc-green: #39FF14;
+            --mc-green-dim: #00AA00;
+            --mc-dark: #121212;
+            --mc-gray: #1E1E1E;
+            --mc-text: #E0E0E0;
+            --mc-blue: #00BFFF;
+            --font-pixel: 'VT323', monospace;
+            --font-body: 'Inter', sans-serif;
+            --glow: 0 0 15px rgba(57, 255, 20, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--mc-dark);
+            color: var(--mc-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-pixel);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* Container utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-main {
+            display: inline-block;
+            background: var(--mc-green-dim);
+            color: #fff;
+            font-family: var(--font-pixel);
+            font-size: 1.5rem;
+            padding: 12px 32px;
+            border: 2px solid var(--mc-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-shadow: 2px 2px 0px #000;
+            box-shadow: var(--glow);
+        }
+
+        .btn-main:hover {
+            background: var(--mc-green);
+            color: #000;
+            transform: translateY(-3px);
+            text-shadow: none;
+            box-shadow: 0 0 25px var(--mc-green);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            /* Placeholder Background */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://via.placeholder.com/1920x1080/1a1a1a/333333?text=Minecraft+Environment+BG');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 4px 4px 0 #000;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #ccc;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 80px 0;
+            background-color: var(--mc-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--mc-gray);
+            padding: 30px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: var(--mc-green);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            color: var(--mc-green);
+            margin-bottom: 10px;
+        }
+
+        /* --- MODS SHOWCASE --- */
+        .mods-showcase {
+            padding: 80px 0;
+            background-color: #0a0a0a;
+            border-top: 2px solid #333;
+            border-bottom: 2px solid #333;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #888;
+        }
+
+        .mods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mod-card {
+            background: var(--mc-gray);
+            border: 2px solid #333;
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mod-card:hover {
+            border-color: var(--mc-blue);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 191, 255, 0.2);
+        }
+
+        .mod-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        .mod-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mod-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .mod-desc {
+            font-size: 0.95rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-small {
+            display: block;
+            text-align: center;
+            background: transparent;
+            border: 2px solid var(--mc-text);
+            color: var(--mc-text);
+            font-family: var(--font-pixel);
+            font-size: 1.2rem;
+            padding: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mod-card:hover .btn-small {
+            background: var(--mc-blue);
+            border-color: var(--mc-blue);
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* --- HOW TO INSTALL --- */
+        .install-section {
+            padding: 80px 0;
+            background-color: var(--mc-dark);
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            background: var(--mc-gray);
+            padding: 20px;
+            border-left: 5px solid var(--mc-green);
+        }
+
+        .step-number {
+            font-family: var(--font-pixel);
+            font-size: 3rem;
+            color: var(--mc-green);
+            margin-right: 20px;
+            line-height: 1;
+        }
+
+        .step-content h4 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        /* --- REVIEWS --- */
+        .reviews-section {
+            padding: 80px 0;
+            background-color: #0d0d0d;
+        }
+
+        .reviews-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .review-bubble {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            width: 300px;
+            position: relative;
+            font-family: var(--font-pixel);
+            font-size: 1.2rem;
+            /* Minecraft speech bubble look */
+            clip-path: polygon(
+                0% 0%, 100% 0%, 100% 85%, 60% 85%, 50% 100%, 40% 85%, 0% 85%
+            );
+            padding-bottom: 40px; 
+            margin-bottom: 20px;
+        }
+
+        .review-user {
+            display: flex;
+            align-items: center;
+            margin-top: -15px; 
+            margin-left: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            margin-right: 10px;
+            border: 2px solid #fff;
+        }
+
+        .user-name {
+            color: #fff;
+            font-family: var(--font-pixel);
+            font-size: 1.3rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 4px solid var(--mc-green-dim);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #888;
+            margin: 0 15px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--mc-green);
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 2.2rem; }
+            
+            .step-item { flex-direction: column; text-align: center; }
+            .step-number { margin-right: 0; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <canvas id="particle-canvas"></canvas>
+        <div class="container hero-content">
+            <h1>Download your Best Minecraft anime Mods</h1>
+            <p>enjoy your best minecraft mods for free.</p>
+            <a href="#mods" class="btn-main">Download Mods Now</a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span> <h3>High Performance</h3>
+                    <p>Optimized code ensuring zero lag and maximum FPS for your gameplay.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span> <h3>100% Safe</h3>
+                    <p>All files are scanned daily. No viruses, no malware, just pure fun.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span> <h3>Easy Install</h3>
+                    <p>Just complete the simple task and enjoy.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span> <h3>All Versions</h3>
+                    <p>Compatible with all releases from 1.8 to Latest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mods" class="mods-showcase">
+        <div class="container">
+            <h2 class="section-title">Trending Mods</h2>
+            <p class="section-subtitle">Hand-picked selections for this week</p>
+            
+<!--les cards -->
+
+           <div class="mods-grid">
+                <div class="mod-card">
+                    <img src="narutoo.png" alt="Mod Image" class="mod-image">
+                    <div class="mod-content">
+                        <h3 class="mod-title">naruto mod</h3>
+                        <p class="mod-desc"> enjoy your best anime mod in minecraft.</p>
+                        <button class="btn-small">Download</button>
+                    </div>
+                </div> 
+
+                <div class="mod-card">
+                    <img src="op-.png" alt="Mod Image" class="mod-image">
+                    <div class="mod-content">
+                        <h3 class="mod-title">one piece mod</h3>
+                        <p class="mod-desc">enjoy your best anime mod in minecraft.</p>
+                        <button class="btn-small">Download</button>
+                    </div>
+                </div>
+
+ <!--              <div class="mod-card">
+                    <img src="https://via.placeholder.com/400x250/111/FF5555?text=Mega+Dungeons" alt="Mod Image" class="mod-image">
+                    <div class="mod-content">
+                        <h3 class="mod-title">Mega Dungeons RPG</h3>
+                        <p class="mod-desc">Adds 50+ new procedurally generated dungeons and bosses.</p>
+                        <button class="btn-small">Download</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section class="install-section">
+        <div class="container">
+            <h2 class="section-title">How to Install </h2>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Download the File</h4>
+                        <p>Select your mod above and click the download button.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>complete the simple task</h4>
+                        <p>Complete the simple task after pressing the download button.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Move to Folder</h4>
+                        <p>Place the mod in your minecraft game files.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4>Launch & Play</h4>
+                        <p>Launch the game. Create your world.And enjoy!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Crafter Feedback</h2>
+            <div class="reviews-grid">
+                <div>
+                    <div class="review-bubble">
+                        "The FPS boost mod literally saved my laptop. Running smooth 60fps now!"
+                    </div>
+                    <div class="review-user">
+                        <img src="https://via.placeholder.com/40/00AA00/FFFFFF?text=S" class="user-avatar" alt="User">
+                        <span class="user-name">Steve_Miner99</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="review-bubble">
+                        "Easiest download site I've found. No ads, no popups, just straight mods."
+                    </div>
+                    <div class="review-user">
+                        <img src="https://via.placeholder.com/40/00BFFF/FFFFFF?text=A" class="user-avatar" alt="User">
+                        <span class="user-name">AlexTheBuilder</span>
+                    </div> 
+                </div> 
+            </div> 
+        </div> -->
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p class="copyright">&copy; 2025 CraftMods. Not affiliated with Mojang Studios.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 2. Minecraft Particle Effect (Floating Pixels)
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        
+        // Colors from palette
+        const colors = ['#39FF14', '#00AA00', '#00BFFF', '#333333'];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 8 + 2; // Pixel sizes
+                this.speedY = Math.random() * 1 - 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                // Draw square for pixel look
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            // Number of particles
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        initParticles();
+        animateParticles();
+    </script>
+</body>
+</html>
