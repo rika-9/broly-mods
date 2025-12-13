@@ -1,370 +1,302 @@
-
-        /* --- CSS VARIABLES & RESET --- */
+ /* =========================================
+           إعدادات التعديل السريع (غير الخلفية هنا)
+           ========================================= */
         :root {
-            --mc-green: #39FF14;
-            --mc-green-dim: #00AA00;
-            --mc-dark: #121212;
-            --mc-gray: #1E1E1E;
-            --mc-text: #E0E0E0;
-            --mc-blue: #00BFFF;
-            --font-pixel: 'VT323', monospace;
-            --font-body: 'Inter', sans-serif;
-            --glow: 0 0 15px rgba(57, 255, 20, 0.6);
+            /* يمكنك وضع رابط صورتك هنا مباشرة بين القوسين */
+            --bg-image-url: url('/img/background.png'); 
+            
+            --primary-color: #00b06f; /* لون روبلوكس الأخضر */
+            --dark-bg: #111216;
+            --panel-bg: rgba(25, 27, 29, 0.85);
+            --font-main: 'Segoe UI', 'Roboto', sans-serif;
+            --font-code: 'Source Code Pro', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--mc-dark);
-            color: var(--mc-text);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-pixel);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        
-        /* Container utility */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- BUTTONS --- */
-        .btn-main {
-            display: inline-block;
-            background: var(--mc-green-dim);
+            font-family: var(--font-main);
+            background-color: #000;
             color: #fff;
-            font-family: var(--font-pixel);
-            font-size: 1.5rem;
-            padding: 12px 32px;
-            border: 2px solid var(--mc-green);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            height: 100vh;
+            overflow: hidden; /* لمنع التمرير وجعلها صفحة تطبيق */
             position: relative;
-            text-shadow: 2px 2px 0px #000;
-            box-shadow: var(--glow);
         }
 
-        .btn-main:hover {
-            background: var(--mc-green);
-            color: #000;
-            transform: translateY(-3px);
-            text-shadow: none;
-            box-shadow: 0 0 25px var(--mc-green);
+        /* الخلفية القابلة للتغيير */
+        .background-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: var(--bg-image-url);
+            background-size: cover;
+            background-position: center;
+            filter: blur(4px) brightness(0.6); /* تغبيش بسيط للتركيز على المحتوى */
+            z-index: -1;
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            height: 90vh;
-            min-height: 600px;
+        /* --- UI LAYOUT --- */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        /* تصميم المود منيو (الشكل المربع) */
+        .mod-menu-interface {
+            width: 900px;
+            height: 550px;
+            background: var(--dark-bg);
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            display: flex;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Sidebar (يسار) */
+        .sidebar {
+            width: 250px;
+            background: #1a1c21;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-area {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            /* Placeholder Background */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://via.placeholder.com/1920x1080/1a1a1a/333333?text=Minecraft+Environment+BG');
+            gap: 10px;
+            margin-bottom: 40px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        
+        .logo-icon {
+            width: 30px; height: 30px;
+            /* background: #fff; */ /* This was a placeholder */
+            border-radius: 6px;
+
+            /* --- ضع رابط صورتك هنا --- */
+            background-image: url('/img/logo.png'); 
             background-size: cover;
             background-position: center;
         }
 
-        #particle-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            text-shadow: 4px 4px 0 #000;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #ccc;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- FEATURES SECTION --- */
-        .features {
-            padding: 80px 0;
-            background-color: var(--mc-dark);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: var(--mc-gray);
-            padding: 30px;
-            border: 1px solid #333;
-            text-align: center;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {
-            border-color: var(--mc-green);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.8rem;
-            color: var(--mc-green);
-            margin-bottom: 10px;
-        }
-
-        /* --- MODS SHOWCASE --- */
-        .mods-showcase {
-            padding: 80px 0;
-            background-color: #0a0a0a;
-            border-top: 2px solid #333;
-            border-bottom: 2px solid #333;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            margin-bottom: 50px;
-            color: #888;
-        }
-
-        .mods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .mod-card {
-            background: var(--mc-gray);
-            border: 2px solid #333;
-            overflow: hidden;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mod-card:hover {
-            border-color: var(--mc-blue);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 191, 255, 0.2);
-        }
-
-        .mod-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #000;
-        }
-
-        .mod-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mod-title {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .mod-desc {
-            font-size: 0.95rem;
-            color: #aaa;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .btn-small {
-            display: block;
-            text-align: center;
-            background: transparent;
-            border: 2px solid var(--mc-text);
-            color: var(--mc-text);
-            font-family: var(--font-pixel);
-            font-size: 1.2rem;
-            padding: 8px;
+        .menu-items li {
+            list-style: none;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            font-weight: 600;
+            color: #888;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .mod-card:hover .btn-small {
-            background: var(--mc-blue);
-            border-color: var(--mc-blue);
-            color: #000;
+        .menu-items li.active, .menu-items li:hover {
+            background: rgba(0, 176, 111, 0.1);
+            color: var(--primary-color);
+        }
+
+        .menu-items li.active::before {
+            content: '';
+            width: 3px; height: 15px;
+            background: var(--primary-color);
+            position: absolute;
+            left: 20px;
+        }
+
+        .status-badge {
+            margin-top: auto;
+            background: rgba(0, 176, 111, 0.2);
+            color: var(--primary-color);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-align: center;
             font-weight: bold;
         }
 
-        /* --- HOW TO INSTALL --- */
-        .install-section {
-            padding: 80px 0;
-            background-color: var(--mc-dark);
-        }
-
-        .steps-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: center;
-            background: var(--mc-gray);
-            padding: 20px;
-            border-left: 5px solid var(--mc-green);
-        }
-
-        .step-number {
-            font-family: var(--font-pixel);
-            font-size: 3rem;
-            color: var(--mc-green);
-            margin-right: 20px;
-            line-height: 1;
-        }
-
-        .step-content h4 {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        /* --- REVIEWS --- */
-        .reviews-section {
-            padding: 80px 0;
-            background-color: #0d0d0d;
-        }
-
-        .reviews-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .review-bubble {
-            background: #fff;
-            color: #000;
-            padding: 20px;
-            width: 300px;
+        /* Content Area (يمين) */
+        .content-area {
+            flex: 1;
+            padding: 40px;
             position: relative;
-            font-family: var(--font-pixel);
-            font-size: 1.2rem;
-            /* Minecraft speech bubble look */
-            clip-path: polygon(
-                0% 0%, 100% 0%, 100% 85%, 60% 85%, 50% 100%, 40% 85%, 0% 85%
-            );
-            padding-bottom: 40px; 
-            margin-bottom: 20px;
+            background: radial-gradient(circle at top right, rgba(0,176,111,0.05), transparent 40%);
         }
 
-        .review-user {
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        
+        .header-text p { color: #888; font-size: 0.9rem; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .toggle-card {
+            background: #23252a;
+            padding: 15px;
+            border-radius: 8px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            margin-top: -15px; 
-            margin-left: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .user-avatar {
-            width: 40px;
-            height: 40px;
+        .toggle-label { font-weight: 600; font-size: 0.9rem; }
+        
+        /* مفتاح وهمي (Fake Toggle Switch) */
+        .switch {
+            width: 40px; height: 20px;
             background: #333;
-            margin-right: 10px;
-            border: 2px solid #fff;
+            border-radius: 20px;
+            position: relative;
         }
-
-        .user-name {
-            color: #fff;
-            font-family: var(--font-pixel);
-            font-size: 1.3rem;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #000;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 4px solid var(--mc-green-dim);
-        }
-
-        .footer-links {
-            margin-bottom: 20px;
-        }
-
-        .footer-links a {
-            color: #888;
-            margin: 0 15px;
-            font-size: 0.9rem;
+        .switch::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px;
+            width: 16px; height: 16px;
+            background: #fff;
+            border-radius: 50%;
             transition: 0.3s;
         }
+        .toggle-card.on .switch { background: var(--primary-color); }
+        .toggle-card.on .switch::after { left: 22px; }
 
-        .footer-links a:hover {
-            color: var(--mc-green);
+        .inject-btn {
+            margin-top: 40px;
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,176,111,0.3);
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+        .inject-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,176,111,0.4); }
+
+        /* --- TERMINAL CONSOLE --- */
+        .console-log {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            color: #666;
+            text-align: right;
+            pointer-events: none;
         }
 
-        .copyright {
-            color: #555;
-            font-size: 0.8rem;
+        /* --- MODAL OVERLAY (INJECTION) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* --- MOBILE RESPONSIVE --- */
+        .terminal-box {
+            background: #1e1e1e;
+            width: 500px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+            font-family: var(--font-code);
+        }
+
+        .terminal-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            color: #0f0;
+            font-size: 0.9rem;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .progress-line {
+            width: 100%;
+            height: 4px;
+            background: #333;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #0f0;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .hidden { display: none; }
+        
+        /* CPA Container */
+        .locker-container {
+            padding: 30px;
+            text-align: center;
+            background: #fff;
+            color: #000;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1rem; }
-            .section-title { font-size: 2.2rem; }
-            
-            .step-item { flex-direction: column; text-align: center; }
-            .step-number { margin-right: 0; margin-bottom: 10px; }
+            .mod-menu-interface { width: 95%; height: auto; flex-direction: column; }
+            .sidebar { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; padding: 15px; }
+            .menu-items, .status-badge { display: none; } /* Hide sidebar items on mobile for simplicity */
+            .content-area { padding: 25px; }
         }
-   
+        /* تنسيق زر الرابط */
+.verify-btn {
+    display: inline-block;
+    background-color: var(--primary-color); /* يأخذ اللون الأخضر تلقائياً */
+    color: #fff !important; /* لون النص أبيض */
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+}
+
+.verify-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 176, 111, 0.4);
+    background-color: #009e63;
+}
