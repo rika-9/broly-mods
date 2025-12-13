@@ -3,256 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BROLY MODS</title>
-    
+    <title>Roblox fire Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gotham+Pro:wght@400;700;900&family=Source+Code+Pro:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="broly anime.png"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=VT323&display=swap" rel="stylesheet"> 
-    
-
+    <link rel="icon" href="/img/broly anime.png">
 </head>
 <body>
+    <div class="background-layer"></div>
 
-
-
-    <header class="hero">
-        <canvas id="particle-canvas"></canvas>
-        <div class="container hero-content">
-            <h1>Download your Best games and mods</h1>
-            <p>enjoy your best games and mods for free.</p>
-            <a href="#mods" class="btn-main">Download Now</a>
-        </div>
-    </header>
-
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🚀</span> <h3>High Performance</h3>
-                    <p>Optimized code ensuring zero lag and maximum FPS for your gameplay.</p>
+    <div class="main-container">
+        
+        <div class="mod-menu-interface">
+            <div class="sidebar">
+                <div class="logo-area">
+                    <div class="logo-icon">
+                        </div>
+                    BROLY<span style="color:var(--primary-color)">MODS</span>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🛡️</span> <h3>100% Safe</h3>
-                    <p>All files are scanned daily. No viruses, no malware, just pure fun.</p>
+                <ul class="menu-items">
+                    <li class="active">⚡ General</li>
+                    <li>🎯 Aimbot</li>
+                    <li>👁️ Visuals</li>
+                    <li>👕 Skins</li>
+                    <li>⚙️ Settings</li>
+                </ul>
+                <div class="status-badge">
+                    ● STATUS: UNDETECTED
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">⚙️</span> <h3>Easy Install</h3>
-                    <p>Just complete the simple task and enjoy.</p>
+            </div>
+
+            <div class="content-area">
+                <div class="header-text">
+                    <h1>Roblox fire menu</h1>
+                    <p>Version 2.701.966 | Updated: Today</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🎮</span> <h3>All Versions</h3>
-                    <p>Compatible with all releases .</p>
+
+                <div class="features-grid">
+                    <div class="toggle-card on">
+                        <span class="toggle-label">no gravity</span>
+                        <div class="switch"></div>
+                    </div>
+                    <div class="toggle-card on">
+                        <span class="toggle-label">Fly / Noclip</span>
+                        <div class="switch"></div>
+                    </div>
+                    <div class="toggle-card">
+                        <span class="toggle-label">chams</span>
+                        <div class="switch"></div>
+                    </div>
+                    <div class="toggle-card on">
+                        <span class="toggle-label">Wallhack </span>
+                        <div class="switch"></div>
+                    </div>
+                </div>
+
+                <button class="inject-btn" id="injectBtn">DOWNLOAD now</button>
+
+                <div class="console-log"> 
+                    > Connected to Roblox ProcessID: 8824<br>
+                    > Hooking Direct3D... OK<br>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="mods" class="mods-showcase">
-        <div class="container">
-            <h2 class="section-title">Trending </h2>
-            <p class="section-subtitle">Hand-picked selections for this week</p>
+    <div class="modal-overlay" id="modal">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="color:#aaa; font-size:0.8rem; margin-left:10px;">Injector.exe</span>
+            </div>
             
-<!--les cards -->
-
-                <div class="mods-grid">
-    <div class="mod-card">
-        <img src="jjk.jpg" alt="Mod Image" class="mod-image">
-        <div class="mod-content">
-            <h3 class="mod-title">jujutso kaisen mod</h3>
-            <p class="mod-desc"> enjoy your best anime mod in minecraft.</p>
-            <button class="btn-small" onclick="window.location.href='https://lockedapp.org/cl/i/gr6dg3'">
-                Download
-            </button>
-
-        </div>
-    </div>
-
-
-
-                <div class="mod-card">
-                    <img src="op-.png" alt="Mod Image" class="mod-image">
-                    <div class="mod-content">
-                        <h3 id="dc1" class="mod-title">one piece mod</h3>
-                        <p class="mod-desc">enjoy your best anime mod in minecraft.</p>
-                       <button class="btn-small" onclick="window.location.href='https://lockedapp.org/cl/i/4o21x4'">Download</button>
-                    </div>
+            <div class="terminal-body" id="terminalText">
                 </div>
+            <div class="progress-line"><div class="progress-fill" id="progBar"></div></div>
 
-             <div class="mod-card">
-                    <img src="Red-Dead-Redemption-Netflix.jpg" alt="game photo" class="mod-image">
-                    <div class="mod-content">
-                        <h3 class="mod-title">Red Dead Redemption Netflix</h3>
-                        <p class="mod-desc">enjoy red dead redemption netflix version now.</p>
-                       <button class="btn-small" onclick="window.location.href='https://lockedapp.org/cl/i/m5eg58'">Download</button>
-                    </div>
-                </div> 
-           <div class="mod-card">
-                    <img src="roblox.jpg" alt="game photo" class="mod-image">
-                    <div class="mod-content">
-                        <h3 class="mod-title">roblox mod</h3>
-                        <p class="mod-desc">enjoy roblox mod now.</p>
-                       <button class="btn-small" onclick="window.location.href='https://lockedapp.org/cl/i/9v96qw'">Download</button>
-                    </div>
-                </div>  
-                    
+            <div id="lockerContent" class="locker-container hidden">
+    <h2 style="color:#333; margin-bottom:10px;">Verification Required</h2>
+    <p style="color:#666; font-size:0.9rem; margin-bottom:10px;">
+        Bot activity detected. Click the button below to verify and get your Key.
+    </p>
+    
+    <a href="https://lockedapp.org/cl/i/9v96qw" target="_blank" class="verify-btn">
+        VERIFY NOW & GET MOD MENU
+    </a>
+    
+    <p style="margin-top:15px; font-size:0.75rem; color:#999;">
+        After verification, the download will start automatically.
+    </p>
+</div>
             </div>
         </div>
     </div>
-    </section>
 
-    <section class="install-section">
-        <div class="container">
-            <h2 class="section-title">How to Install </h2>
-            <div class="steps-container">
-                <div class="step-item">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h4>Download the File</h4>
-                        <p>Select your mod or game above and click the download button.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h4>complete the simple task</h4>
-                        <p>Complete the simple task after pressing the download button.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h4>Move to Folder</h4>
-                        <p>Place the mod in your minecraft game files.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">04</div>
-                    <div class="step-content">
-                        <h4>Launch & Play</h4>
-                        <p>Launch the game. Create your world.And enjoy!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<!--
-    <section class="reviews-section">
-        <div class="container">
-            <h2 class="section-title">Crafter Feedback</h2>
-            <div class="reviews-grid">
-                <div>
-                    <div class="review-bubble">
-                        "The FPS boost mod literally saved my laptop. Running smooth 60fps now!"
-                    </div>
-                    <div class="review-user">
-                        <img src="https://via.placeholder.com/40/00AA00/FFFFFF?text=S" class="user-avatar" alt="User">
-                        <span class="user-name">Steve_Miner99</span>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="review-bubble">
-                        "Easiest download site I've found. No ads, no popups, just straight mods."
-                    </div>
-                    <div class="review-user">
-                        <img src="https://via.placeholder.com/40/00BFFF/FFFFFF?text=A" class="user-avatar" alt="User">
-                        <span class="user-name">AlexTheBuilder</span>
-                    </div> 
-                </div> 
-            </div> 
-        </div> 
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <p class="copyright">&copy; 2025 CraftMods. Not affiliated with Mojang Studios.</p>
-        </div>
-    </footer>
--->
     <script>
-        // 1. Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        const btn = document.getElementById('injectBtn');
+        const modal = document.getElementById('modal');
+        const termBody = document.getElementById('terminalText');
+        const progBar = document.getElementById('progBar');
+        const lockerDiv = document.getElementById('lockerContent');
+        
+
+        btn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            runInjection();
         });
 
-        // 2. Minecraft Particle Effect (Floating Pixels)
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function runInjection() {
+            const logs = [
+                "Finding Roblox process...",
+                "Injecting 'RobloxHub.dll'...",
+                "Bypassing Anti-Cheat (Byfron)...",
+                "Hooking functions...",
+                "Success! Waiting for Key..."
+            ];
+            
+            let i = 0;
+            let width = 0;
 
-        let particles = [];
-        
-        // Colors from palette
-        const colors = ['#39FF14', '#00AA00', '#00BFFF', '#333333'];
+            // Progress bar animation
+            const barInterval = setInterval(() => {
+                width += 1;
+                progBar.style.width = width + '%';
+                if (width >= 100) clearInterval(barInterval);
+            }, 30);
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 8 + 2; // Pixel sizes
-                this.speedY = Math.random() * 1 - 0.5;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.y -= this.speedY;
-                this.x += this.speedX;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-            }
-            draw() {
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                // Draw square for pixel look
-                ctx.fillRect(this.x, this.y, this.size, this.size);
-            }
+            // Text logs animation
+            const logInterval = setInterval(() => {
+                if (i < logs.length) {
+                    const p = document.createElement('p');
+                    p.innerText = "> " + logs[i];
+                    termBody.appendChild(p);
+                    termBody.scrollTop = termBody.scrollHeight; // Auto scroll
+                    i++;
+                } else {
+                    clearInterval(logInterval);
+                    setTimeout(showLocker, 1000);
+                }
+            }, 600);
         }
 
-        function initParticles() {
-            particles = [];
-            // Number of particles
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle());
-            }
+        function showLocker() {
+            termBody.style.display = 'none';
+            document.querySelector('.progress-line').style.display = 'none';
+            lockerDiv.classList.remove('hidden');
         }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        const toggleCards = document.querySelectorAll('.toggle-card');
+        toggleCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('on');
             });
-            requestAnimationFrame(animateParticles);
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initParticles();
         });
-
-        initParticles();
-        animateParticles();
     </script>
 </body>
 </html>
-
-
-
